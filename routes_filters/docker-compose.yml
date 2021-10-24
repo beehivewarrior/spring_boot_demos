@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+
+  book:
+    build:
+      context: ./book/
+      cache_from:
+        - openjdk:latest
+    image: springdemo/book:latest
+    ports:
+      - "8090:8090"
+    networks:
+      - springdemo
+
+  gateway:
+    build:
+      context: ./gateway/
+      cache_from:
+        - openjdk:latest
+    image: springdemo/gateway:latest
+    ports:
+      - "80:8080"
+    networks:
+      - springdemo
+
+networks:
+  springdemo:
